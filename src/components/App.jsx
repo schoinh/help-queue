@@ -10,8 +10,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import constants from './../../src/constants';
 const { c } = constants;
+import * as actions from './../actions';
 
 class App extends React.Component {
+  componentWillMount() {
+    const { dispatch } = this.props;
+    const { watchFirebaseTicketsRef } = actions;
+    dispatch(watchFirebaseTicketsRef());
+  }
 
   componentDidMount() {
     this.waitTimeUpdateTimer = setInterval(() =>
