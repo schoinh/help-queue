@@ -30,6 +30,7 @@ export default (state = {}, action) => {
       newState = Object.assign({}, state);
       newState[action.ticket.id] = action.ticket;
       return newState;
+
     default:
       return state;
   }
