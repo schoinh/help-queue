@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import c from './../constants';
+import constants from './../../src/constants';
+const { c } = constants;
 
-function Ticket(props){
+function Ticket(props) {
 
-  function handleSavingSelectedTicket(ticketId){
+  function handleSavingSelectedTicket(ticketId) {
     const { dispatch } = props;
     const action = {
       type: c.SELECT_TICKET,
@@ -18,11 +19,11 @@ function Ticket(props){
     <div>
       <h3>{props.location} - {props.names}</h3>
       <h4>{props.formattedWaitTime}</h4>
-      <hr/>
+      <hr />
     </div>;
-  if (props.currentRouterPath === '/admin'){
+  if (props.currentRouterPath === '/admin') {
     return (
-      <div onClick={() => {handleSavingSelectedTicket(props.ticketId);}}>
+      <div onClick={() => { handleSavingSelectedTicket(props.ticketId); }}>
         {ticketInformation}
       </div>
     );

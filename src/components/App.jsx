@@ -8,18 +8,19 @@ import Moment from 'moment';
 import Admin from './Admin';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import c from './../constants';
+import constants from './../../src/constants';
+const { c } = constants;
 
 class App extends React.Component {
 
   componentDidMount() {
     this.waitTimeUpdateTimer = setInterval(() =>
       this.updateTicketElapsedWaitTime(),
-    60000
+      60000
     );
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.waitTimeUpdateTimer);
   }
 
@@ -37,14 +38,14 @@ class App extends React.Component {
     });
   }
 
-  render(){
+  render() {
     return (
       <div>
-        <Header/>
+        <Header />
         <Switch>
-          <Route exact path='/' render={()=><TicketList ticketList={this.props.masterTicketList} />} />
-          <Route path='/newticket' render={()=><NewTicketControl />} />
-          <Route path='/admin' render={(props)=><Admin currentRouterPath={props.location.pathname} />} />
+          <Route exact path='/' render={() => <TicketList ticketList={this.props.masterTicketList} />} />
+          <Route path='/newticket' render={() => <NewTicketControl />} />
+          <Route path='/admin' render={(props) => <Admin currentRouterPath={props.location.pathname} />} />
           <Route component={Error404} />
         </Switch>
       </div>
