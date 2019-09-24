@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import { HashRouter } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/index';
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 let unsubscribe = store.subscribe(() =>
   console.log(store.getState())
@@ -16,7 +18,7 @@ const render = (Component) => {
   ReactDOM.render(
     <HashRouter>
       <Provider store={store}>
-        <Component/>
+        <Component />
       </Provider>
     </HashRouter>,
     document.getElementById('react-app-root')
